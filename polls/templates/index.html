@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoonacular</title>
+    <style>
+        table, th, td, img{
+            border: solid 1.5px black;
+        }
+    </style>
+</head>
+<body>
+
+    <div align="center"><hr><strong>==============================Recipes==============================</strong><hr>
+    {% for key in Sp.Recipes %}
+    <strong>name: </strong>{{ key.name }}<br>
+    <strong>image: </strong><img src="{{ key.image }}"alt="Receta" width=230 heigt="auto"><br>
+    <strong>link: </strong><a href="{{ key.link }}">{{ key.link }}</a><br>
+    <strong>type: </strong>{{ key.type }}<br>
+    <strong>relevance: </strong>{{ key.relevance }}<br>
+    <strong>kvtable: </strong>{{ key.kvtable|safe }}<br>
+    <!--images:{{ key.images }}<br>
+    dataPoints:{{ key.dataPoints }}--><hr>
+    {% endfor %}</div>
+
+    <div align="center"><table align="center">
+
+    {% for key in Sp.Recipes.0 %}
+
+    <th>{{key}}</th>
+
+    {% endfor %}
+
+    {% for key in Sp.Recipes %}
+    <tr align="center"><td>{{ key.name }}</td>
+    <td><img src="{{ key.image }}"alt="Receta" width="90%" heigt="auto"></td>
+    <td><a href="{{ key.link }}">{{ key.link }}</a></td>
+    <td>{{ key.type }}</td>
+    <td>{{ key.relevance }}</td>
+    <td>{{ key.kvtable|safe }}</td>
+    <td>{{ key.images }}</td>
+            
+        <td>
+        {% for key2 in key.dataPoints  %}
+
+            <strong>{{ key2.key }}:</strong> {{ key2.value }}
+
+        {% endfor %}
+    
+    </td>
+        
+    {% endfor %}
+
+    </table></div>
+
+
+</body>
+</html>
+ 

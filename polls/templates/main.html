@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Parrillada Cercana</title>
+
+    <style>
+        html{
+            margin: 2%;
+            margin-top: 0.15%;
+        }
+        #cards{
+            margin: 2%;
+            border: solid 0.25em black;
+        }
+        hr{
+            color: black;
+            border: solid 0.25em black;
+        }
+        #titular{
+            text-decoration: underline;
+        }
+        .container-fluid{
+            margin-left: 3%;
+            margin-right: 3%;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-secondary"> 
+        <hr><nav class="navbar navbar-light bg-light">
+          <div class="container-fluid">
+            <h1 align="center" id="titular">· Parrillada · Cercana ·</h1>
+            <form class="d-flex" action="../home" method="POST" >
+              {% csrf_token %}
+                  <input type="search" class="form-control me-2" name="busca" id="busca">
+                  <input type="submit" class="btn btn-primary" value="Search">&nbsp;
+                  <input type="button" class="btn btn-primary"  value="All Results" onclick="location.href='../../all'">
+              </form>
+          </div>
+        </nav><hr></div>
+
+
+<!--h1 align="center" id="titular">· Parrillada · Cercana ·</h1>
+    <hr><div align="center">
+        <form action="../home" method="POST">
+        {% csrf_token %}
+            <input type="search" class="form-label" name="busca" id="busca">
+            <input type="submit" class="btn btn-primary" value="Search">
+            <input type="button" class="btn btn-primary" value="All Results" onclick="location.href='../../all'">
+        </form>
+    </div><hr-->
+    <!--r}}<hr-->
+
+    <div class="row" class="bg-light" align="center">
+    {% for key in r %}
+    
+        <br>
+
+        <div class="card col-sm-6" id="cards" style="width: 18rem;" align="center">
+            <div class="card-body">
+              <h5 class="card-title">{{key.Platos_base}}</h5>
+              <p class="card-text">Spanish name: '{{ key.Plato_base_ESP }}'</p>
+              <a href="../basedish/{{key.id}}" class="btn btn-primary">More Info</a>
+            </div>
+          </div>
+
+
+    {% endfor %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
